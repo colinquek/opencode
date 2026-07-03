@@ -1,2 +1,17 @@
 packages/core/migration/**/snapshot.json linguist-generated
-packages/core/src/database/migration.gen.ts linguist-generated
+packages/core/src/database/migration/gen.ts linguist-generated
+
+# Git merge strategy for Sunny rebranding
+# Preserve branding files when pulling from upstream
+
+# TUI logo (6-line ASCII art)
+packages/tui/src/logo.ts merge=ours
+
+# CLI wordmark (4-line block-drawing ASCII)
+packages/opencode/src/cli/ui.ts merge=ours
+
+# Web UI logo (SVG)
+packages/web/src/assets/logo.svg merge=ours
+
+# Memory Bank (agent documentation)
+.memory-bank/ merge=ours

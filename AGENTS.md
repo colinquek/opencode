@@ -4,6 +4,12 @@
 - The default branch in this repo is `dev`.
 - Local `main` ref may not exist; use `dev` or `origin/dev` for diffs.
 
+## Communication Style
+
+- **No emojis** in code, comments, commit messages, or documentation
+- Keep messages professional and concise
+- Use clear, technical language
+
 ## Branch Names
 
 Use a short branch name of at most three words, separated by hyphens. Do not use slashes or type prefixes such as `feat/` or `fix/`.

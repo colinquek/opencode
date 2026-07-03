@@ -1,0 +1,120 @@
+# Progress: Sunny Rebranding
+
+## Current Status
+**Version**: 1.17.9 (from packages/opencode/package.json)  
+**Branch**: `sunnyrebrand` (feature branch)  
+**Last Commit**: 3adfb970b - feat(tui): add debug info dialog with copy to clipboard (#35004)
+
+## What Works ✅
+
+### Core Functionality
+- ✅ TUI with SolidJS + opentui
+- ✅ Desktop app (Electron-based)
+- ✅ Web UI with shared components
+- ✅ Headless API server (port 4096)
+- ✅ CLI with 20+ commands
+- ✅ Session V2 with durable prompt admission
+- ✅ Context Epoch for immutable baseline rendering
+- ✅ Plugin system with hot-reload
+
+### Rebranding (Visual Assets)
+- ✅ **TUI Logo** (`packages/tui/src/logo.ts`)
+  - 6-line SUNNY ASCII art (left/right split arrays)
+  - 3D rendering effect with color gradients
+  - Structure: padding, top, mid1, mid2, mid3, bottom
+- ✅ **CLI Wordmark** (`packages/opencode/src/cli/ui.ts`)
+  - 4-line block-drawing ASCII art
+  - Fallback for non-TTY terminals
+  - Used in help output
+
+## What's Left to Build ⏳
+
+### Visual Rebranding (Phase 1)
+- [ ] `packages/web/src/assets/logo.svg` - Web UI logo
+  - Replace OpenCode logo with Sunny branding
+  - Maintain SVG format for scalability
+
+### Fork Maintenance (Phase 2)
+- [ ] Create `.gitattributes` for automatic merge conflict resolution
+  ```gitattributes
+  packages/tui/src/logo.ts merge=ours
+  packages/opencode/src/cli/ui.ts merge=ours
+  packages/web/src/assets/logo.svg merge=ours
+  ```
+- [ ] Configure git merge driver
+  ```bash
+  git config merge.ours.driver true
+  ```
+- [ ] Test upstream merge workflow
+  ```bash
+  git fetch upstream
+  git merge upstream/dev
+  ```
+- [ ] Document process in CONTRIBUTING.md or README.md
+
+### Functional Rebranding (Phase 3 - OPTIONAL)
+- [ ] `packages/opencode/package.json` — "name" field and "bin" entry
+- [ ] `packages/opencode/src/cli/index.ts` — `.scriptName("sunny")` call
+- [ ] `packages/opencode/src/config/config.ts` — config filename (`sunny.json`, `.sunny/`)
+- [ ] `packages/opencode/src/global/index.ts` — filesystem paths (`~/.config/sunny/`, etc.)
+- [ ] `packages/opencode/src/flag/flag.ts` — env var names (`SUNNY_CONFIG_DIR`)
+- [ ] `packages/opencode/script/build.ts` — output binary filename
+- [ ] `packages/opencode/src/cli/cmd/tui/` — hardcoded "OpenCode" strings
+- [ ] `README.md` — Project name and description
+
+## Known Issues
+
+### 1. Git Index Refresh (Minor)
+- **Symptom**: Slow `git status` on large repo (~6110 files)
+- **Impact**: Minor delay when checking status
+- **Workaround**: Use `git status --short` or increase timeout
+
+### 2. TUI Logo Spacing (Resolved)
+- **Issue**: Gap at bottom of first "N" in SUNNY
+- **Root Cause**: Missing vertical connector character in line 5
+- **Fix**: Replaced space with `║` in right array line 5
+- **Status**: ✅ Resolved
+
+## Evolution of Decisions
+
+### 2026-07-02: Visual Rebranding Strategy
+- **Decision**: Start with TUI logo only (most visible)
+- **Rationale**: Terminal is primary interface for target users
+- **Outcome**: Successful SUNNY ASCII art implementation
+
+### 2026-07-02: Logo Structure Discovery
+- **Learning**: TUI logo uses split left/right arrays for 3D effect
+- **Structure**: 6 lines (padding + 5 content lines)
+- **Rendering**: Left side darker (shadow), right side lighter (highlight)
+
+### 2026-07-03: Fork Maintenance Approach
+- **Decision**: Use Git merge strategy (Option 1) over patch files
+- **Rationale**: Automatic conflict resolution, cleaner history
+- **Implementation**: `.gitattributes` + merge driver config
+
+### 2026-07-03: Functional Naming Separation
+- **Decision**: Keep config paths, env vars, binary names as "opencode"
+- **Rationale**: Minimizes breaking changes, separates visual from functional
+- **Future**: Can rebrand functional naming in Phase 3 if needed
+
+## Testing Checklist
+
+### Before Merging to Main
+- [ ] TUI displays SUNNY logo correctly
+- [ ] CLI shows SUNNY wordmark in help
+- [ ] Build produces working binary
+- [ ] Can pull upstream without conflicts
+- [ ] All existing tests pass
+- [ ] No regression in core functionality
+
+### After Pulling Upstream
+- [ ] Branding files preserved (check with `git diff`)
+- [ ] Build still succeeds
+- [ ] TUI logo renders correctly
+- [ ] No new conflicts introduced
+
+## Next Milestone
+**Goal**: Complete Phase 2 (Fork Maintenance Setup)  
+**ETA**: Next session  
+**Dependencies**: None  
+**Risk**: Low (git configuration only)
