@@ -42,7 +42,7 @@ echo "Restoring Sunny branding files..."
 # Restore branding files from current branch (backup in case merge didn't preserve)
 git checkout HEAD -- packages/tui/src/logo.ts
 git checkout HEAD -- packages/opencode/src/cli/ui.ts
-git checkout HEAD -- packages/web/src/assets/logo.svg 2>/dev/null || echo "Web logo not found, skipping..."
+# git checkout HEAD -- packages/web/src/assets/logo.svg 2>/dev/null || echo "Web logo not found, skipping..."
 
 echo "Branding restored!"
 echo ""

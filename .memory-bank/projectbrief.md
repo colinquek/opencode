@@ -26,10 +26,10 @@ OpenCode is an open-source AI-powered coding agent providing CLI (TUI), web, and
 4. Minimal disruption to existing build/test workflows
 
 ## Success Criteria
-- ✅ TUI displays "SUNNY" logo on startup
-- ✅ CLI shows "SUNNY" wordmark in help output
-- ✅ Can pull upstream updates without losing branding
-- ✅ Build process produces branded binaries
+- TUI displays "SUNNY" logo on startup
+- CLI shows "SUNNY" wordmark in help output
+- Can pull upstream updates without losing branding
+- Build process produces branded binaries
 
 ## Related Files
 - `.gitattributes` - Merge strategy for branding files (TODO: create)

@@ -1,18 +1,35 @@
 # Active Context: Sunny Rebranding
 
 ## Current Work Focus
-**Phase 1: Visual Rebranding (COMPLETED)**
-- ✅ TUI logo (`packages/tui/src/logo.ts`) - 6-line SUNNY ASCII art
-- ✅ CLI wordmark (`packages/opencode/src/cli/ui.ts`) - 4-line block-drawing logo
-- ⏳ Web logo (`packages/web/src/assets/logo.svg`) - pending
+**Phase 1: Visual Rebranding (95% COMPLETE)**
+- TUI logo (`packages/tui/src/logo.ts`) - 8-line SUNNY ASCII art
+  - Generated using ASCII banner generator
+  - Left/right arrays with 8 lines each
+  - Updated `marks` constant to match SUNNY characters (`█░▀ `)
+- CLI wordmark (`packages/opencode/src/cli/ui.ts`) - 4-line block-drawing logo
+- Web logo (`packages/web/src/assets/logo.svg`) - pending (ONLY REMAINING TASK)
 
-**Phase 2: Fork Maintenance Setup (IN PROGRESS)**
-- ⏳ Create `.gitattributes` for automatic merge conflict resolution
-- ⏳ Document pull workflow in CONTRIBUTING.md
-- ⏳ Test upstream merge process
+**Phase 2: Fork Maintenance Setup (COMPLETE)**
+- Created `.gitattributes` for automatic merge conflict resolution
+- Configured git merge driver: `git config merge.ours.driver true`
+- Created `scripts/restore-branding.sh` automation script
+- Documented pull workflow with no force-push strategy
+- Set up remotes: origin (colinquek/opencode), upstream (anomalyco/opencode)
 
 ## Recent Changes
-- **2026-07-02**: Successfully replaced OPENCODE logo with SUNNY in TUI
+- **2026-07-03**: Updated TUI logo to 8-line SUNNY ASCII art
+  - Used ASCII banner generator for professional text-style logo
+  - Structure: 8 lines (left/right arrays) with proper spacing
+  - Updated `marks` constant from `_^~,` to `█░▀ ` to match SUNNY characters
+- **2026-07-03**: Successfully tested text-based rebranding
+  - TUI displays SUNNY logo on startup
+  - CLI shows SUNNY wordmark in help output
+  - Build process works with `--single` flag for faster iteration
+- **2026-07-03**: Completed fork maintenance setup
+  - `.gitattributes` configured with merge=ours for branding files
+  - Git merge driver configured for automatic conflict resolution
+  - Restore script created for manual branding restoration if needed
+- **2026-07-02**: Successfully replaced OPENCODE logo with SUNNY in TUI (initial 6-line version)
   - Structure: left/right arrays, 6 lines each (padding + 5 content lines)
   - Rendering: 3D effect with gray shadow (left) and green highlight (right)
 - **2026-07-02**: Updated CLI wordmark in ui.ts
@@ -21,11 +38,10 @@
 - **2026-07-03**: Created Memory Bank structure
 
 ## Next Steps
-1. Create `.gitattributes` with merge=ours for branding files
-2. Configure git merge driver: `git config merge.ours.driver true`
-3. Test pull workflow with upstream
-4. Update web logo (SVG)
-5. Optional: Rebrand functional naming (config paths, env vars, binary names)
+1. Create SVG logo for web UI (`packages/web/src/assets/logo.svg`)
+2. Optional: Add documentation to CONTRIBUTING.md about pull workflow
+3. Test upstream merge process when new upstream release is available
+4. Optional: Rebrand functional naming (config paths, env vars, binary names)
 
 ## Active Decisions
 - **Keep functional naming as "opencode"** for now (config paths, env vars, package names)

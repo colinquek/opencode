@@ -5,51 +5,45 @@
 **Branch**: `sunnyrebrand` (feature branch)  
 **Last Commit**: 3adfb970b - feat(tui): add debug info dialog with copy to clipboard (#35004)
 
-## What Works ✅
+## What Works
 
 ### Core Functionality
-- ✅ TUI with SolidJS + opentui
-- ✅ Desktop app (Electron-based)
-- ✅ Web UI with shared components
-- ✅ Headless API server (port 4096)
-- ✅ CLI with 20+ commands
-- ✅ Session V2 with durable prompt admission
-- ✅ Context Epoch for immutable baseline rendering
-- ✅ Plugin system with hot-reload
+- TUI with SolidJS + opentui
+- Desktop app (Electron-based)
+- Web UI with shared components
+- Headless API server (port 4096)
+- CLI with 20+ commands
+- Session V2 with durable prompt admission
+- Context Epoch for immutable baseline rendering
+- Plugin system with hot-reload
 
 ### Rebranding (Visual Assets)
-- ✅ **TUI Logo** (`packages/tui/src/logo.ts`)
-  - 6-line SUNNY ASCII art (left/right split arrays)
-  - 3D rendering effect with color gradients
-  - Structure: padding, top, mid1, mid2, mid3, bottom
-- ✅ **CLI Wordmark** (`packages/opencode/src/cli/ui.ts`)
+- **TUI Logo** (`packages/tui/src/logo.ts`) - COMPLETED & TESTED
+  - 8-line SUNNY ASCII art (left/right split arrays)
+  - Created using ASCII banner generator
+  - Structure: padding, top, mid1, mid2, mid3, mid4, mid5, bottom
+  - Updated `marks` constant to match SUNNY characters: `█░▀ `
+- **CLI Wordmark** (`packages/opencode/src/cli/ui.ts`) - COMPLETED & TESTED
   - 4-line block-drawing ASCII art
   - Fallback for non-TTY terminals
   - Used in help output
+- **Web Logo** (`packages/web/src/assets/logo.svg`) - PENDING
+  - Only remaining visual rebranding task
 
-## What's Left to Build ⏳
+## What's Left to Build
 
-### Visual Rebranding (Phase 1)
+### Visual Rebranding (Phase 1 - ALMOST COMPLETE)
 - [ ] `packages/web/src/assets/logo.svg` - Web UI logo
   - Replace OpenCode logo with Sunny branding
   - Maintain SVG format for scalability
+  - **This is the ONLY remaining visual rebranding task**
 
 ### Fork Maintenance (Phase 2)
-- [ ] Create `.gitattributes` for automatic merge conflict resolution
-  ```gitattributes
-  packages/tui/src/logo.ts merge=ours
-  packages/opencode/src/cli/ui.ts merge=ours
-  packages/web/src/assets/logo.svg merge=ours
-  ```
-- [ ] Configure git merge driver
-  ```bash
-  git config merge.ours.driver true
-  ```
-- [ ] Test upstream merge workflow
-  ```bash
-  git fetch upstream
-  git merge upstream/dev
-  ```
+- [x] Create `.gitattributes` for automatic merge conflict resolution
+- [x] Configure git merge driver (`git config merge.ours.driver true`)
+- [x] Create `scripts/restore-branding.sh` automation script
+- [x] Document pull workflow in script comments
+- [ ] Test upstream merge workflow (pending next upstream update)
 - [ ] Document process in CONTRIBUTING.md or README.md
 
 ### Functional Rebranding (Phase 3 - OPTIONAL)
@@ -73,7 +67,7 @@
 - **Issue**: Gap at bottom of first "N" in SUNNY
 - **Root Cause**: Missing vertical connector character in line 5
 - **Fix**: Replaced space with `║` in right array line 5
-- **Status**: ✅ Resolved
+- **Status**: Resolved
 
 ## Evolution of Decisions
 
