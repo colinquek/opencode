@@ -1,9 +1,10 @@
 # Progress: Sunny Rebranding
 
 ## Current Status
-**Version**: 1.17.9 (from packages/opencode/package.json)  
+**Version**: 1.17.14 (rebased onto upstream tag)  
 **Branch**: `sunnyrebrand` (feature branch)  
-**Last Commit**: 3adfb970b - feat(tui): add debug info dialog with copy to clipboard (#35004)
+**Last Commit**: 21a32bd42 - merge: upstream dev branch changes onto v1.17.14  
+**Rebase Date**: 2026-07-07
 
 ## What Works
 
@@ -43,8 +44,14 @@
 - [x] Configure git merge driver (`git config merge.ours.driver true`)
 - [x] Create `scripts/restore-branding.sh` automation script
 - [x] Document pull workflow in script comments
-- [ ] Test upstream merge workflow (pending next upstream update)
-- [ ] Document process in CONTRIBUTING.md or README.md
+- [x] Test upstream merge workflow - **COMPLETED 2026-07-07**
+  - Successfully rebased onto `v1.17.14` tag
+  - Preserved all branding files via `.gitattributes merge=ours`
+  - Resolved conflicts using tag version (not dev branch)
+  - Passed typecheck validation (bun turbo typecheck)
+  - Force pushed to `origin/sunnyrebrand`
+- [x] Document rebase process in `.memory-bank/upstream-rebase-guide.md`
+- [ ] Document process in CONTRIBUTING.md or README.md (optional - detailed guide already in memory bank)
 
 ### Functional Rebranding (Phase 3 - OPTIONAL)
 - [ ] `packages/opencode/package.json` — "name" field and "bin" entry
@@ -90,6 +97,18 @@
 - **Decision**: Keep config paths, env vars, binary names as "opencode"
 - **Rationale**: Minimizes breaking changes, separates visual from functional
 - **Future**: Can rebrand functional naming in Phase 3 if needed
+
+### 2026-07-07: Upstream Rebase Success
+- **Decision**: Rebase onto v1.17.14 tag using stash method (Option B)
+- **Rationale**: Preserve branding while incorporating upstream changes
+- **Process**:
+  1. Stashed dev branch changes
+  2. Rebased branding commits onto v1.17.14
+  3. Restashed changes, resolved conflicts using tag version
+  4. Committed upstream changes
+  5. Force pushed after typecheck validation
+- **Outcome**: Clean rebase with all branding intact, documented in `upstream-rebase-guide.md`
+- **Lesson**: `.gitattributes merge=ours` works perfectly for branding files
 
 ## Testing Checklist
 
