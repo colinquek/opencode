@@ -66,9 +66,16 @@ git stash push -m "upstream $LATEST_TAG merge changes"
 git rebase $LATEST_TAG
 ```
 
+### Step 6: Updated package.json Version
+
+```bash
+# Update version in packages/opencode/package.json to match the latest tag
+jq ".version = \"$LATEST_TAG\"" packages/opencode/package.json > tmp.json && mv tmp.json packages/opencode/package.json
+```
+
 **Expected:** Your branding commits are replayed on top of the tag.
 
-### Step 6: Restore Stashed Changes
+### Step 7: Restore Stashed Changes
 
 ```bash
 git stash pop
@@ -76,7 +83,7 @@ git stash pop
 
 **Note:** This may create conflicts (UU markers) for files changed between the tag and dev branch.
 
-### Step 7: Resolve Conflicts (Use Tag Version)
+### Step 8: Resolve Conflicts (Use Tag Version)
 
 ```bash
 # For all conflicted files, use the tag version:
@@ -85,14 +92,14 @@ git diff --name-only --diff-filter=U | xargs -I {} git checkout $LATEST_TAG -- {
 
 **Why:** We want the stable tag version, not the bleeding-edge dev branch changes.
 
-### Step 8: Commit Upstream Changes
+### Step 9: Commit Upstream Changes
 
 ```bash
 git add .
 git commit -m "merge: upstream dev branch changes onto $LATEST_TAG"
 ```
 
-### Step 9: Verify Commit History
+### Step 10: Verify Commit History
 
 ```bash
 git log --oneline -5
@@ -107,7 +114,7 @@ git log --oneline -5
 <hash> feat(...) upstream commit
 ```
 
-### Step 10: Force Push to Fork
+### Step 11: Force Push to Fork
 
 ```bash
 git push origin sunnyrebrand --force
