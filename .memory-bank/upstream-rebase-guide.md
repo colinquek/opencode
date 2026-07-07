@@ -12,10 +12,27 @@ Document the process for rebasing the `sunnyrebrand` branch onto new upstream ta
 
 ## Files Protected by .gitattributes
 
+### Visual Rebranding (Phase 1)
 ```
 packages/tui/src/logo.ts merge=ours
 packages/opencode/src/cli/ui.ts merge=ours
 packages/web/src/assets/logo.svg merge=ours
+```
+
+### Functional Rebranding (Phase 3)
+```
+packages/opencode/package.json merge=ours
+packages/opencode/src/index.ts merge=ours
+packages/opencode/script/build.ts merge=ours
+packages/opencode/src/cli/cmd/run/splash.ts merge=ours
+packages/web/package.json merge=ours
+packages/core/package.json merge=ours
+packages/app/src/i18n/*.ts merge=ours
+README.md merge=ours
+```
+
+### Documentation
+```
 .memory-bank/ merge=ours
 ```
 
@@ -108,10 +125,25 @@ git log --oneline -5
 **Expected structure:**
 ```
 <hash> (HEAD -> sunnyrebrand) merge: upstream dev branch changes onto v1.17.14
-<hash> rebranded text based logos          ← Your branding
+<hash> feat: functional rebranding Phase 3      ← Sunny binary naming
+<hash> rebranded text based logos          ← Visual branding
 <hash> initial commit                       ← Your setup
 <tag>  (tag: $LATEST_TAG) release: <version>   ← New base
 <hash> feat(...) upstream commit
+```
+
+### Step 11: Verify Branding Files Intact
+
+```bash
+# Visual branding
+head -10 packages/tui/src/logo.ts
+grep "Sunny" packages/opencode/src/cli/ui.ts
+
+# Functional branding
+grep '"name": "sunny"' packages/opencode/package.json
+grep 'scriptName("sunny")' packages/opencode/src/index.ts
+grep 'Sunny Desktop' packages/app/src/i18n/en.ts
+grep 'Sunny Terminal UI' README.md
 ```
 
 ### Step 11: Force Push to Fork
@@ -188,10 +220,16 @@ git rebase $LATEST_TAG
 After rebase, verify:
 
 - [ ] `git log --oneline -3` shows tag as base
-- [ ] Branding files intact:
+- [ ] **Visual branding files intact:**
   ```bash
   head -10 packages/tui/src/logo.ts
   head -10 packages/opencode/src/cli/ui.ts
+  ```
+- [ ] **Functional branding files intact:**
+  ```bash
+  grep '"name": "sunny"' packages/opencode/package.json
+  grep 'scriptName("sunny")' packages/opencode/src/index.ts
+  grep 'Sunny Desktop' packages/app/src/i18n/en.ts
   ```
 - [ ] No merge conflicts: `git status --short | grep "^UU"` (should be empty)
 - [ ] Typecheck passes: `bun turbo typecheck`

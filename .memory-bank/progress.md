@@ -107,17 +107,20 @@
   - Passed typecheck validation (bun turbo typecheck)
   - Force pushed to `origin/sunnyrebrand`
 - [x] Document rebase process in `.memory-bank/upstream-rebase-guide.md`
-- [ ] Document process in CONTRIBUTING.md or README.md (optional - detailed guide already in memory bank)
+- [x] Document process in CONTRIBUTING.md or README.md (optional - detailed guide already in memory bank)
 
 ### Functional Rebranding (Phase 3 - OPTIONAL)
-- [ ] `packages/opencode/package.json` — "name" field and "bin" entry
-- [ ] `packages/opencode/src/cli/index.ts` — `.scriptName("sunny")` call
+- [x] `packages/opencode/package.json` — "name" field and "bin" entry
+- [x] `packages/opencode/src/cli/index.ts` — `.scriptName("sunny")` call
 - [ ] `packages/opencode/src/config/config.ts` — config filename (`sunny.json`, `.sunny/`)
 - [ ] `packages/opencode/src/global/index.ts` — filesystem paths (`~/.config/sunny/`, etc.)
 - [ ] `packages/opencode/src/flag/flag.ts` — env var names (`SUNNY_CONFIG_DIR`)
-- [ ] `packages/opencode/script/build.ts` — output binary filename
-- [ ] `packages/opencode/src/cli/cmd/tui/` — hardcoded "OpenCode" strings
-- [ ] `README.md` — Project name and description
+- [x] `packages/opencode/script/build.ts` — output binary filename
+- [x] `packages/opencode/src/cli/cmd/run/splash.ts` — hardcoded "OpenCode" strings
+- [x] `README.md` — Project name and description
+- [x] `packages/web/package.json` — workspace dependency reference
+- [x] `packages/core/package.json` — bin entry
+- [x] `packages/app/src/i18n/*.ts` — "OpenCode Desktop" → "Sunny Desktop" (17 files)
 
 ## Known Issues
 

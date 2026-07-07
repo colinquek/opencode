@@ -13,5 +13,15 @@ packages/opencode/src/cli/ui.ts merge=ours
 # Web UI logo (SVG)
 packages/web/src/assets/logo.svg merge=ours
 
+# Functional rebranding (Phase 3)
+packages/opencode/package.json merge=ours
+packages/opencode/src/index.ts merge=ours
+packages/opencode/script/build.ts merge=ours
+packages/opencode/src/cli/cmd/run/splash.ts merge=ours
+packages/web/package.json merge=ours
+packages/core/package.json merge=ours
+packages/app/src/i18n/*.ts merge=ours
+README.md merge=ours
+
 # Memory Bank (agent documentation)
 .memory-bank/ merge=ours
