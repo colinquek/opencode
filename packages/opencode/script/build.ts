@@ -164,7 +164,14 @@ if (targetsArg) {
   }
 }
 
-await $`rm -rf dist`
+if (targetsArg) {
+  // selective build: keep other targets' existing output
+  for (const item of targets) {
+    await $`rm -rf dist/${pkg.name}-${targetKey(item)}`
+  }
+} else {
+  await $`rm -rf dist`
+}
 
 const binaries: Record<string, string> = {}
 if (!skipInstall) {

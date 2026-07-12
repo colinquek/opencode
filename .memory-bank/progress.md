@@ -48,14 +48,14 @@
 - **Windows build note (2026-07-12)**: `tree-sitter-powershell` was removed from root
   `package.json` trustedDependencies — its node-gyp native build fails without the VC++ toolset
   and is unused (code imports only its .wasm file, see `packages/opencode/src/tool/shell.ts`).
-- **macOS Binaries**:
-  - ✅ opencode-darwin-arm64 (129 MB)
-  - ✅ opencode-darwin-x64 (135 MB)
-  - ✅ opencode-darwin-x64-baseline (135 MB)
-- **macOS Archives**:
-  - ✅ opencode-darwin-arm64.tar.gz (41 MB)
-  - ✅ opencode-darwin-x64.tar.gz (43 MB)
-  - ✅ opencode-darwin-x64-baseline.tar.gz (43 MB)
+- **macOS Binaries (rebuilt 2026-07-12 — the 2026-07-07 builds were wiped by `rm -rf dist`)**:
+  - ✅ sunny-darwin-arm64 (129 MB) + sunny-darwin-arm64.tar.gz (40.8 MB)
+  - ✅ sunny-darwin-x64 (134.3 MB) + sunny-darwin-x64.tar.gz (42.9 MB)
+  - ✅ sunny-darwin-x64-baseline (134.3 MB) + sunny-darwin-x64-baseline.tar.gz (42.9 MB)
+  - Cross-compiled from Windows; not smoke-tested. Archives created on Windows —
+    run `chmod +x sunny` after extracting on macOS.
+- **Build script note**: with `--targets=`, build.ts now cleans only the requested targets'
+  dist folders instead of wiping all of `dist/`, so platform builds no longer destroy each other.
 
 ## What Works
 
