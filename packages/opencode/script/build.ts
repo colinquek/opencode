@@ -113,7 +113,28 @@ const allTargets: {
   },
 ]
 
-const targets = singleFlag
+// --targets=linux-arm64,linux-arm64-musl builds only the named targets
+// (names match the dist output suffix: <os>-<arch>[-baseline][-<abi>], win32 spelled "windows")
+const targetsArg = process.argv
+  .find((arg) => arg.startsWith("--targets="))
+  ?.slice("--targets=".length)
+  .split(/[\s,]+/)
+  .map((entry) => entry.trim())
+  .filter(Boolean)
+
+const targetKey = (item: (typeof allTargets)[number]) =>
+  [
+    item.os === "win32" ? "windows" : item.os,
+    item.arch,
+    item.avx2 === false ? "baseline" : undefined,
+    item.abi,
+  ]
+    .filter(Boolean)
+    .join("-")
+
+const targets = targetsArg
+  ? allTargets.filter((item) => targetsArg.includes(targetKey(item)))
+  : singleFlag
   ? allTargets.filter((item) => {
       if (item.os !== process.platform || item.arch !== process.arch) {
         return false
@@ -133,6 +154,15 @@ const targets = singleFlag
       return true
     })
   : allTargets
+
+if (targetsArg) {
+  const known = allTargets.map(targetKey)
+  const unknown = targetsArg.filter((entry) => !known.includes(entry))
+  if (unknown.length) {
+    console.error(`Unknown targets: ${unknown.join(", ")}\nAvailable: ${known.join(", ")}`)
+    process.exit(1)
+  }
+}
 
 await $`rm -rf dist`
 

@@ -28,17 +28,26 @@
   - Windows ARM64, x64
 - **Estimated Effort**: COMPLETE - build system ready
 
-### Custom Platform Build (2026-07-07)
-- **Status**: macOS COMPLETE ✅ | Windows/Linux PENDING
+### Custom Platform Build (2026-07-07, updated 2026-07-12)
+- **Status**: macOS COMPLETE ✅ | Linux ARM64 COMPLETE ✅ | Windows ARM64 PENDING
 - **Requested Platforms**:
-  - Windows: ARM64 only
-  - Linux: ARM64 only (glibc + musl)
+  - Windows: ARM64 only — PENDING
+  - Linux: ARM64 only (glibc + musl) ✅ (built 2026-07-12)
   - macOS: All architectures (ARM64 + x64 + baseline) ✅
-- **Total Targets**: 6 binaries (3 macOS complete)
-- **Build Scripts**: 
-  - macOS: `packages/opencode/script/build-macos.ts` ✅
-  - Custom: `packages/opencode/script/build-custom-platforms.ts`
+- **Total Targets**: 6 binaries (5 complete)
+- **Build Script**: `packages/opencode/script/build.ts` with new `--targets=` flag
+  (e.g. `bun run script/build.ts "--targets=linux-arm64,linux-arm64-musl"` — quote the arg in PowerShell,
+  it otherwise splits on the comma). The `build-macos.ts` / `build-custom-platforms.ts` scripts named
+  earlier do not exist on this branch.
 - **Output**: `dist/` directory
+- **Linux ARM64 Binaries (2026-07-12)**:
+  - ✅ sunny-linux-arm64 (167 MB) + sunny-linux-arm64.tar.gz (54.3 MB)
+  - ✅ sunny-linux-arm64-musl (162.8 MB) + sunny-linux-arm64-musl.tar.gz (52.9 MB)
+  - Cross-compiled from Windows; NOT smoke-tested (needs ARM64 Linux hardware or QEMU).
+    Archives were created on Windows, so run `chmod +x sunny` after extracting.
+- **Windows build note (2026-07-12)**: `tree-sitter-powershell` was removed from root
+  `package.json` trustedDependencies — its node-gyp native build fails without the VC++ toolset
+  and is unused (code imports only its .wasm file, see `packages/opencode/src/tool/shell.ts`).
 - **macOS Binaries**:
   - ✅ opencode-darwin-arm64 (129 MB)
   - ✅ opencode-darwin-x64 (135 MB)
@@ -78,8 +87,8 @@
   - 4-line block-drawing ASCII art
   - Fallback for non-TTY terminals
   - Used in help output
-- **Web Logo** (`packages/web/src/assets/logo.svg`) - PENDING
-  - Only remaining visual rebranding task
+- **Web Logo** (`packages/web/src/assets/logo.svg`) - MANUAL (owner: Bhuvan)
+  - Pending internal team review; will be replaced manually — do not automate
 
 ## What's Left to Build
 
@@ -90,10 +99,9 @@
   - Documentation for macOS developers
 
 ### Visual Rebranding (Phase 1 - ALMOST COMPLETE)
-- [ ] `packages/web/src/assets/logo.svg` - Web UI logo
-  - Replace OpenCode logo with Sunny branding
+- [ ] `packages/web/src/assets/logo.svg` - Web UI logo — **MANUAL (owner: Bhuvan)**
+  - Pending internal team review; will be replaced manually
   - Maintain SVG format for scalability
-  - **This is the ONLY remaining visual rebranding task**
 
 ### Fork Maintenance (Phase 2)
 - [x] Create `.gitattributes` for automatic merge conflict resolution
@@ -112,9 +120,9 @@
 ### Functional Rebranding (Phase 3 - OPTIONAL)
 - [x] `packages/opencode/package.json` — "name" field and "bin" entry
 - [x] `packages/opencode/src/cli/index.ts` — `.scriptName("sunny")` call
-- [ ] `packages/opencode/src/config/config.ts` — config filename (`sunny.json`, `.sunny/`)
-- [ ] `packages/opencode/src/global/index.ts` — filesystem paths (`~/.config/sunny/`, etc.)
-- [ ] `packages/opencode/src/flag/flag.ts` — env var names (`SUNNY_CONFIG_DIR`)
+- [ ] `packages/opencode/src/config/config.ts` — config filename (`sunny.json`, `.sunny/`) — **MANUAL (owner: Bhuvan)**
+- [ ] `packages/opencode/src/global/index.ts` — filesystem paths (`~/.config/sunny/`, etc.) — **MANUAL (owner: Bhuvan)**
+- [ ] `packages/opencode/src/flag/flag.ts` — env var names (`SUNNY_CONFIG_DIR`) — **MANUAL (owner: Bhuvan)**
 - [x] `packages/opencode/script/build.ts` — output binary filename
 - [x] `packages/opencode/src/cli/cmd/run/splash.ts` — hardcoded "OpenCode" strings
 - [x] `README.md` — Project name and description
